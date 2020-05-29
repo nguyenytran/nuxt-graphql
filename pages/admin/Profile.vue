@@ -41,7 +41,7 @@
                 <div class="relative">
                   <img
                     alt="..."
-                    src="../assets/img/team-2-800x800.jpg"
+                    src="../../assets/img/team-2-800x800.jpg"
                     class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                     style="max-width: 150px;"
                   />
@@ -126,3 +126,9 @@
     </section>
   </main>
 </template>
+<script>
+export default {
+  name: 'Profile',
+  layout: 'admin'
+}
+</script>
