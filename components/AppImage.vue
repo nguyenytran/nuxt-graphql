@@ -2,8 +2,8 @@
   <img
     :data-src="lazySrc"
     :data-srcset="lazySrcset"
-    :style="style"
-    class="max-w-full max-h-full w-auto h-auto align-middle"
+    :background-color="backgroundColor"
+    class="max-w-full max-h-full w-auto h-auto align-middle bg-orange-100"
   />
 </template>
 
