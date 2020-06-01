@@ -24,6 +24,15 @@
           class="lg:w-4/5 mx-auto flex flex-wrap xl:shadow-2xl lg:shadow-2xl md:shadow-2xl sm:p-0 xl:p-4 lg:p-4 md:p-4 rounded-lg"
         >
           <app-image
+            v-viewer="{
+              scalable: false,
+              rotatable: false,
+              navbar: false,
+              title: false,
+              movable: false,
+              toolbar: false,
+              zoomable: false
+            }"
             :data-src="`https://source.unsplash.com/random/${id}`"
             class="w-full object-cover object-center xl:rounded-l-lg md:rounded-l-lg lg:rounded-l-lg sm:rounded-l-none lg:w-1/2"
           ></app-image>
