@@ -1,7 +1,7 @@
 <template>
   <div id="container" class="w-full lg:max-w-full">
     <n-link
-      to="/"
+      to="/architecture"
       prefetch
       class="icon-back fixed rounded-full w-12 h-12 hover:bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
     >
