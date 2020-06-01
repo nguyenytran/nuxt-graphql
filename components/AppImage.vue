@@ -3,7 +3,7 @@
     :data-src="lazySrc"
     :data-srcset="lazySrcset"
     :background-color="backgroundColor"
-    class="max-w-full max-h-full w-auto h-auto align-middle bg-orange-100"
+    class="max-w-full max-h-full w-auto h-auto"
   />
 </template>
 

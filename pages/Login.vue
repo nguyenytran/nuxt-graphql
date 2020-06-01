@@ -57,6 +57,7 @@
                       for="grid-password"
                       >Email</label
                     ><input
+                      v-model="formLogin.username"
                       type="email"
                       class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                       placeholder="Email"
@@ -69,6 +70,7 @@
                       for="grid-password"
                       >Password</label
                     ><input
+                      v-model="formLogin.password"
                       type="password"
                       class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                       placeholder="Password"
@@ -80,6 +82,7 @@
                       class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                       type="button"
                       style="transition: all 0.15s ease 0s;"
+                      @click="login"
                     >
                       Sign In
                     </button>
@@ -94,7 +97,27 @@
   </main>
 </template>
 <script>
+import { LOGIN_MUTATION } from '~/apollo/mutations/user'
 export default {
-  name: 'LoginPage'
+  name: 'LoginPage',
+  data() {
+    return {
+      formLogin: {
+        username: '',
+        password: '',
+        userProfile: {}
+      }
+    }
+  },
+  methods: {
+    async login() {
+      const { formLogin, $apollo } = this
+      const { data } = await $apollo.mutate({
+        mutation: LOGIN_MUTATION,
+        variables: formLogin
+      })
+      await this.$apolloHelpers.onLogin(`Bearer ${data.login.access_token}`)
+    }
+  }
 }
 </script>

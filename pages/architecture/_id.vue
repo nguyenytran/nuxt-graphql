@@ -23,19 +23,10 @@
         <div
           class="lg:w-4/5 mx-auto flex flex-wrap xl:shadow-2xl lg:shadow-2xl md:shadow-2xl sm:p-0 xl:p-4 lg:p-4 md:p-4 rounded-lg"
         >
-          <swiper
-            class="xl:rounded-l-lg md:rounded-l-lg lg:rounded-l-lg lg:w-1/2"
-            :options="swiperOption"
-          >
-            <swiper-slide v-for="i in 5" :key="i">
-              <app-image
-                :data-src="`https://source.unsplash.com/random/${id}`"
-                class="w-full object-cover object-center"
-              ></app-image>
-            </swiper-slide>
-            <div slot="button-prev" class="swiper-button-prev"></div>
-            <div slot="button-next" class="swiper-button-next"></div>
-          </swiper>
+          <app-image
+            :data-src="`https://source.unsplash.com/random/${id}`"
+            class="w-full object-cover object-center xl:rounded-l-lg md:rounded-l-lg lg:rounded-l-lg sm:rounded-l-none lg:w-1/2"
+          ></app-image>
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 px-5">
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
               The Catcher in the Rye
@@ -49,6 +40,36 @@
               cardigan.
             </p>
             <div class="flex border-t-2 border-gray-200 mt-4 py-4">
+              <swiper
+                v-viewer="{
+                  scalable: false,
+                  rotatable: false,
+                  navbar: false,
+                  title: false,
+                  movable: false
+                }"
+                class="swiper rounded-lg h-24 w-auto"
+                :options="{
+                  slidesPerView: 4,
+                  spaceBetween: 2,
+                  navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                  }
+                }"
+              >
+                <swiper-slide v-for="i in 7" :key="i">
+                  <img
+                    :src="`https://source.unsplash.com/random/${i}`"
+                    alt=""
+                    class="w-full h-full"
+                  />
+                </swiper-slide>
+                <div slot="button-prev" class="swiper-button-prev"></div>
+                <div slot="button-next" class="swiper-button-next"></div>
+              </swiper>
+            </div>
+            <div class="flex mt-4 py-4">
               <button
                 class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
               >
@@ -117,12 +138,6 @@ export default {
   },
   data() {
     return {
-      swiperOption: {
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      },
       title: 'The Catcher in the Rye'
     }
   },
@@ -164,12 +179,6 @@ export default {
         right: 0;
         bottom: 0;
         left: 0;
-      }
-      .description {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        /*-webkit-box-orient: vertical;*/
-        overflow: hidden;
       }
     }
   }

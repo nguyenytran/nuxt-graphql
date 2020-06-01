@@ -1,6 +1,6 @@
 <template>
-  <div class="masonry max-w-screen-xl m-auto px-5 xl:px-0">
-    <div v-for="i in 20" :key="i" class="grid relative mb-4 hover:bg-gray-100">
+  <div id="masonry" class="max-w-screen-xl m-auto px-5 xl:px-0">
+    <div v-for="i in 20" :key="i" class="masonry-item relative mb-4">
       <n-link :to="`/architecture/${i}`" prefetch>
         <app-image
           :data-src="`https://source.unsplash.com/random/${i}`"
@@ -27,6 +27,17 @@ export default {
       title: 'Architecture'
     }
   },
+  mounted() {
+    const numCols = 3
+    const colHeights = Array(numCols).fill(0)
+    const container = document.getElementById('masonry')
+    Array.from(container.children).forEach((child, i) => {
+      const order = i % numCols
+      child.style.order = order
+      colHeights[order] += parseFloat(child.clientHeight)
+    })
+    container.style.height = Math.max(...colHeights) + 'px'
+  },
   head() {
     return {
       title: this.title
@@ -36,7 +47,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.masonry {
+#masonry {
   column-gap: 16px;
   column-count: 5;
   @media (max-width: 1200px) {
@@ -45,7 +56,7 @@ export default {
   @media (max-width: 992px) {
     columns: 2;
   }
-  .grid {
+  .masonry-item {
     display: inline-block;
     &:before {
       border-radius: 0.5rem;
