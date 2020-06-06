@@ -5,7 +5,14 @@
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 module.exports = {
-  theme: {},
+  theme: {
+    screens: {
+      sm: { max: '639px' },
+      md: { min: '768px', max: '1023px' },
+      lg: '1024px',
+      xl: '1280px'
+    }
+  },
   variants: {},
   plugins: [],
   purge: {

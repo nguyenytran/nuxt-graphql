@@ -3,7 +3,7 @@
     <n-link
       to="/architecture"
       prefetch
-      class="icon-back fixed rounded-full w-12 h-12 hover:bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+      class="fixed rounded-full sm:p-2 p-4 hover:bg-gray-200 sm:bg-gray-200 md:bg-gray-200 sm:m-4 md:mt-6 md:ml-12 z-10 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
     >
       <svg
         class="Hn_ gUZ pBj"
@@ -19,9 +19,9 @@
       </svg>
     </n-link>
     <section class="text-gray-700 body-font overflow-hidden bg-white pb-16">
-      <div class="container sm:px-0 xl:px-5 lg:px-5 md:px-5 mx-auto">
+      <div class="container sm:px-0 px-5 mx-auto">
         <div
-          class="lg:w-4/5 mx-auto flex flex-wrap xl:shadow-2xl lg:shadow-2xl md:shadow-2xl sm:p-0 xl:p-4 lg:p-4 md:p-4 rounded-lg"
+          class="lg:w-4/5 mx-auto flex flex-wrap shadow-2xl sm:shadow-none sm:rounded-none sm:p-0 p-4 rounded-lg"
         >
           <app-image
             v-viewer="{
@@ -34,7 +34,7 @@
               zoomable: false
             }"
             :data-src="`https://source.unsplash.com/random/${id}`"
-            class="w-full object-cover object-center xl:rounded-l-lg md:rounded-l-lg lg:rounded-l-lg sm:rounded-l-none lg:w-1/2"
+            class="sm:w-full md:w-full md:rounded-l-none object-cover object-center rounded-l-lg sm:rounded-l-none w-1/2"
           ></app-image>
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 px-5">
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
@@ -161,11 +161,6 @@ export default {
 <style scoped lang="less">
 #container {
   margin: auto;
-  .icon-back {
-    @media (max-width: 992px) {
-      display: none;
-    }
-  }
   .masonry {
     column-gap: 16px;
     column-count: 5;
@@ -174,9 +169,6 @@ export default {
     }
     @media (max-width: 992px) {
       columns: 2;
-      .icon-back {
-        display: none;
-      }
     }
     .grid {
       display: inline-block;
