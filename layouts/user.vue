@@ -8,7 +8,7 @@
           <div class="lg:w-0 lg:flex-1">
             <n-link to="/" prefetch>
               <img
-                class="h-8 w-auto sm:h-10"
+                class="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
                 alt="Workflow"
               />
