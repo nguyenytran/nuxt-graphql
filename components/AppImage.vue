@@ -3,7 +3,7 @@
     :data-src="lazySrc"
     :data-srcset="lazySrcset"
     :background-color="backgroundColor"
-    class="max-w-full max-h-full w-auto h-auto"
+    class="w-auto h-auto"
   />
 </template>
 
@@ -15,7 +15,7 @@ export default {
   props: {
     backgroundColor: {
       type: String,
-      default: '#efefef'
+      default: '#e2adad'
     },
     height: {
       type: Number,

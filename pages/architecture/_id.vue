@@ -1,5 +1,5 @@
 <template>
-  <div id="container" class="w-full lg:max-w-full">
+  <div id="container" class="w-full lg:max-w-full m-auto">
     <n-link
       to="/architecture"
       prefetch
@@ -108,21 +108,26 @@
     <p class="text-center text-lg font-bold capitalize py-4">
       People also love these ideas
     </p>
-    <div class="masonry max-w-screen-xl m-auto px-4">
-      <div v-for="i in 10" :key="i" class="grid relative mb-4">
-        <n-link :to="`/architecture/${i}`" prefetch>
-          <app-image
-            :data-src="`https://source.unsplash.com/random/${i}`"
-            class="w-full rounded-lg"
-          ></app-image>
+    <div class="max-w-screen-xl m-auto px-4">
+      <masonry
+        :cols="{ default: 5, 1000: 3, 400: 2 }"
+        :gutter="{ default: '16px', 400: '8px' }"
+      >
+        <div v-for="i in 10" :key="i" class="grid relative sm:mb-2 mb-4">
+          <n-link :to="`/architecture/${i}`" prefetch>
+            <app-image
+              :data-src="`https://source.unsplash.com/random/${i}`"
+              class="w-full rounded-lg"
+            ></app-image>
 
-          <div class="flex flex-col absolute inset-0 px-4 py-4 text-white">
-            <div class="relative">
-              <h1 class="text-xl font-bold">Title {{ i }}</h1>
+            <div class="flex flex-col absolute inset-0 px-4 py-4 text-white">
+              <div class="relative">
+                <h1 class="text-xl font-bold">Title {{ i }}</h1>
+              </div>
             </div>
-          </div>
-        </n-link>
-      </div>
+          </n-link>
+        </div>
+      </masonry>
     </div>
   </div>
 </template>
@@ -157,31 +162,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="less">
-#container {
-  margin: auto;
-  .masonry {
-    column-gap: 16px;
-    column-count: 5;
-    @media (max-width: 1200px) {
-      columns: 3;
-    }
-    @media (max-width: 992px) {
-      columns: 2;
-    }
-    .grid {
-      display: inline-block;
-      &:before {
-        border-radius: 0.5rem;
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-    }
-  }
-}
-</style>

@@ -13,6 +13,9 @@ module.exports = {
       xl: '1280px'
     }
   },
+  prefix: '',
+  important: false,
+  separator: ':',
   variants: {},
   plugins: [],
   purge: {

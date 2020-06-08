@@ -1,3 +1,6 @@
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const path = require('path')
+
 export default {
   server: {
     port: 8000
@@ -27,11 +30,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~assets/css/tailwind.css'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/v-viewer'],
+  plugins: ['~/plugins/v-viewer', '~/plugins/v-masonry'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -44,7 +47,12 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/apollo'],
+  modules: ['@nuxtjs/apollo', 'nuxt-purgecss'],
+
+  purgeCSS: {
+    mode: 'postcss',
+    enabled: process.env.NODE_ENV === 'production'
+  },
 
   // Give apollo module options
   apollo: {
@@ -96,6 +104,16 @@ export default {
    ** Build configuration
    */
   build: {
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
+        'postcss-nested': {}
+      }
+    },
+    preset: {
+      stage: 1
+    },
     analyze: true,
     /*
      ** You can extend webpack config here

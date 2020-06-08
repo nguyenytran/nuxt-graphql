@@ -1,19 +1,25 @@
 <template>
-  <div class="masonry max-w-screen-xl m-auto px-5 xl:px-0">
-    <div v-for="i in 20" :key="i" class="masonry-item relative mb-4">
-      <n-link :to="`/architecture/${i}`">
-        <app-image
-          :data-src="`https://source.unsplash.com/random/${i}`"
-          class="w-full rounded-lg"
-        ></app-image>
+  <div class="max-w-screen-xl m-auto px-5 xl:px-0">
+    <masonry
+      :cols="{ default: 5, 1000: 3, 400: 2 }"
+      :gutter="{ default: '16px', 700: '8px' }"
+    >
+      <div v-for="i in 55" :key="i" class="relative sm:mb-2 mb-4">
+        <n-link :to="`/architecture/${i}`">
+          <app-image
+            :lazy-src="`https://source.unsplash.com/random/${i}`"
+            :lazy-srcset="`https://source.unsplash.com/random/${i} 2x`"
+            class="w-full rounded-lg"
+          ></app-image>
 
-        <div class="flex flex-col absolute inset-0 px-4 py-4 text-white">
-          <div class="relative">
-            <h1 class="text-xl font-bold">Title {{ i }}</h1>
+          <div class="flex flex-col absolute inset-0 px-4 py-4 text-white">
+            <div class="relative">
+              <h1 class="text-xl font-bold">Title {{ i }}</h1>
+            </div>
           </div>
-        </div>
-      </n-link>
-    </div>
+        </n-link>
+      </div>
+    </masonry>
   </div>
 </template>
 <script>
@@ -34,29 +40,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.masonry {
-  column-gap: 16px;
-  column-count: 5;
-  @media (max-width: 1200px) {
-    columns: 3;
-  }
-  @media (max-width: 992px) {
-    columns: 2;
-  }
-  .masonry-item {
-    display: inline-block;
-    &:before {
-      border-radius: 0.5rem;
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-  }
-}
-</style>
