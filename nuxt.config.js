@@ -1,7 +1,16 @@
 // eslint-disable-next-line nuxt/no-cjs-in-config
 const path = require('path')
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+    ? {
+        router: {
+          base: '/<repository-name>/'
+        }
+      }
+    : {}
 
 export default {
+  ...routerBase,
   server: {
     port: 8000
   },
