@@ -5,7 +5,7 @@
     <div class="about-us__bg absolute top-0 w-full h-full bg-center bg-cover">
       <span
         id="blackOverlay"
-        class="w-full h-full absolute opacity-75 bg-black"
+        class="w-full h-full absolute opacity-25 bg-black"
       ></span>
     </div>
     <div class="absolute top-0 right-0 left-0">
@@ -125,7 +125,7 @@ export default {
 .about-us {
   min-height: 100vh;
   &__bg {
-    background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80');
+    background-image: url('https://images.unsplash.com/photo-1429497587953-2e68f09d4283?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=1600');
   }
   .side-menu {
     display: flex;

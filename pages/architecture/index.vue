@@ -13,8 +13,7 @@
       >
         <n-link :to="`/architecture/${i}`">
           <app-image
-            :lazy-src="`https://source.unsplash.com/random/${i}`"
-            :lazy-srcset="`https://source.unsplash.com/random/${i} 2x`"
+            :lazy-srcset="`https://source.unsplash.com/random/${i}`"
             class="w-full rounded-lg"
           ></app-image>
 
