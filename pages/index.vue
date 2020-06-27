@@ -84,10 +84,10 @@
       <div class="items-center flex flex-wrap">
         <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
           <div class="pr-12">
-            <h1 class="text-white font-semibold text-5xl">
+            <h1 class="text-white font-semibold text-5xl" data-aos="fade-down">
               Your story starts with us.
             </h1>
-            <p class="mt-4 text-lg text-gray-300">
+            <p class="mt-4 text-lg text-gray-300" data-aos="fade-up">
               This is a simple example of a Landing Page you can build using
               Tailwind Starter Kit. It features multiple CSS components based on
               the Tailwindcss design system.
@@ -99,8 +99,10 @@
   </div>
 </template>
 <script>
+import aos from '@/mixins/aos'
 export default {
   name: 'LandingPage',
+  mixins: [aos],
   data() {
     return {
       title: 'About Us',

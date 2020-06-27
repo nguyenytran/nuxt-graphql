@@ -19,7 +19,11 @@
       </svg>
     </n-link>
     <section class="text-gray-700 body-font overflow-hidden bg-white pb-16">
-      <div class="container sm:px-0 px-5 mx-auto">
+      <div
+        class="container sm:px-0 px-5 mx-auto"
+        data-aos="zoom-in-down"
+        data-aos-duration="3000"
+      >
         <div
           class="lg:w-4/5 mx-auto flex flex-wrap shadow-2xl sm:shadow-none sm:rounded-none sm:p-0 p-4 rounded-lg"
         >
@@ -37,10 +41,13 @@
             class="sm:w-full md:w-full md:rounded-l-none object-cover object-center rounded-l-lg sm:rounded-l-none w-1/2"
           ></app-image>
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 px-5">
-            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+            <h1
+              class="text-gray-900 text-3xl title-font font-medium mb-1"
+              data-aos="fade-down"
+            >
               The Catcher in the Rye
             </h1>
-            <p class="leading-relaxed">
+            <p class="leading-relaxed" data-aos="fade-up">
               Fam locavore kickstarter distillery. Mixtape chillwave tumeric
               sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
               juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
@@ -48,7 +55,10 @@
               pour-over, neutra jean shorts keytar banjo tattooed umami
               cardigan.
             </p>
-            <div class="flex border-t-2 border-gray-200 mt-4 py-4">
+            <div
+              class="flex border-t-2 border-gray-200 mt-4 py-4"
+              data-aos="fade-up"
+            >
               <swiper
                 v-viewer="{
                   scalable: false,
@@ -105,7 +115,12 @@
         </div>
       </div>
     </section>
-    <p class="text-center text-lg font-bold capitalize py-4">
+    <p
+      class="text-center text-lg font-bold capitalize py-4"
+      data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"
+    >
       People also love these ideas
     </p>
     <div class="max-w-screen-xl m-auto px-4">
@@ -113,7 +128,13 @@
         :cols="{ default: 5, 1000: 3, 400: 2 }"
         :gutter="{ default: '16px', 400: '8px' }"
       >
-        <div v-for="i in 10" :key="i" class="grid relative sm:mb-2 mb-4">
+        <div
+          v-for="i in 10"
+          :key="i"
+          class="grid relative sm:mb-2 mb-4"
+          data-aos="fade-up"
+          data-aos-duration="3000"
+        >
           <n-link :to="`/architecture/${i}`" prefetch>
             <app-image
               :data-src="`https://source.unsplash.com/random/${i}`"
@@ -122,7 +143,9 @@
 
             <div class="flex flex-col absolute inset-0 px-4 py-4 text-white">
               <div class="relative">
-                <h1 class="text-xl font-bold">Title {{ i }}</h1>
+                <h1 class="text-xl font-bold" data-aos="fade-down">
+                  Title {{ i }}
+                </h1>
               </div>
             </div>
           </n-link>
@@ -136,7 +159,7 @@
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import AppImage from '~/components/AppImage'
-
+import aos from '@/mixins/aos'
 export default {
   name: 'Id',
   layout: 'user',
@@ -145,6 +168,7 @@ export default {
     Swiper,
     SwiperSlide
   },
+  mixins: [aos],
   asyncData({ params }) {
     return {
       id: params.id
