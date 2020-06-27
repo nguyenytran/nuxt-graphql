@@ -4,7 +4,7 @@ const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
         router: {
-          base: '/nuxt-graphql/'
+          base: 'nuxt-graphql'
         }
       }
     : {}
