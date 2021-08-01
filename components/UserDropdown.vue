@@ -28,29 +28,15 @@
       style="min-width: 12rem"
     >
       <a
-        href="#pablo"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+        class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 cursor-pointer"
       >
-        Action
+        Profile
       </a>
       <a
-        href="#pablo"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+        class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 cursor-pointer"
+        @click.prevent="logout"
       >
-        Another action
-      </a>
-      <a
-        href="#pablo"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-      >
-        Something else here
-      </a>
-      <div class="h-0 my-2 border border-solid border-gray-200" />
-      <a
-        href="#pablo"
-        class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
-      >
-        Seprated link
+        Logout
       </a>
     </div>
   </div>
@@ -76,6 +62,11 @@ export default {
           placement: 'bottom-end'
         })
       }
+    },
+    async logout() {
+      await this.$auth.logout()
+
+      this.$auth.redirect('login', true)
     }
   }
 }

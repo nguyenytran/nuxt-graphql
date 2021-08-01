@@ -13,10 +13,23 @@ import SidebarComponent from '@/components/Sidebar.vue'
 import NavbarComponent from '@/components/Navbar.vue'
 export default {
   name: 'Admin',
-  middleware: 'isAuth',
+  middleware: ['isAuth'],
   components: {
     NavbarComponent,
     SidebarComponent
+  },
+  async beforeCreate() {
+    try {
+      const { data } = await this.$axios.get('/users/me')
+
+      this.$auth.setUser(data.data)
+    } catch (e) {
+      if (e.response?.status === 401) {
+        await this.$auth.logout()
+
+        this.$auth.redirect('login', true)
+      }
+    }
   }
 }
 </script>

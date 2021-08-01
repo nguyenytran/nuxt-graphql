@@ -1,5 +1,6 @@
 // eslint-disable-next-line nuxt/no-cjs-in-config
 const path = require('path')
+const isDev = process.env.NODE_ENV !== 'production'
 const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
@@ -16,6 +17,12 @@ export default {
   },
 
   mode: 'universal',
+
+  /**
+   * Dev mode
+   */
+  dev: isDev,
+
   /*
    ** Headers of the page
    */
@@ -32,18 +39,29 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+
   /*
    ** Customize the progress-bar color
    */
   loading: { color: '#fff' },
+
   /*
    ** Global CSS
    */
   css: ['~assets/css/tailwind.css', 'aos/dist/aos.css'],
+
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/v-viewer', '~/plugins/v-masonry'],
+  plugins: [
+    '~/plugins/v-viewer',
+    '~/plugins/v-masonry',
+    {
+      src: '~/plugins/v-filepond',
+      ssr: false
+    }
+  ],
+
   /*
    ** Nuxt.js dev-modules
    */
@@ -53,62 +71,60 @@ export default {
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss'
   ],
+
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/apollo', 'nuxt-purgecss'],
+  modules: [
+    'nuxt-purgecss',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/svg-sprite'
+  ],
+
+  axios: {
+    baseURL: 'https://thewe-api.test/api'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'authorization',
+            method: 'post',
+            propertyName: 'access_token'
+          },
+          logout: {
+            url: 'authorization',
+            method: 'delete'
+          },
+          user: false
+        }
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/admin',
+      callback: '/',
+      home: '/admin'
+    },
+    cookie: {
+      prefix: 'auth.',
+      options: {
+        path: '/',
+        expires: 30
+      }
+    }
+  },
 
   purgeCSS: {
     mode: 'postcss',
     enabled: process.env.NODE_ENV === 'production'
   },
 
-  // Give apollo module options
-  apollo: {
-    tokenName: 'apollo-token',
-    cookieAttributes: {
-      /**
-       * Define when the cookie will be removed. Value can be a Number
-       * which will be interpreted as days from time of creation or a
-       * Date instance. If omitted, the cookie becomes a session cookie.
-       */
-      expires: 7, // optional, default: 7 (days)
+  svgSprite: {},
 
-      /**
-       * Define the path where the cookie is available. Defaults to '/'
-       */
-      path: '/', // optional
-      /**
-       * Define the domain where the cookie is available. Defaults to
-       * the domain of the page where the cookie was created.
-       */
-      domain: 'example.com', // optional
-
-      /**
-       * A Boolean indicating if the cookie transmission requires a
-       * secure protocol (https). Defaults to false.
-       */
-      secure: false
-    },
-    includeNodeModules: true, // optional, default: false (this includes graphql-tag for node_modules folder)
-    // (Optional) Default 'apollo' definition
-    defaultOptions: {
-      // See 'apollo' definition
-      // For example: default query options
-      $query: {
-        loadingKey: 'loading',
-        fetchPolicy: 'cache-and-network'
-      }
-    },
-    // optional
-    watchLoading: '~/plugins/apollo-watch-loading-handler.js',
-    // optional
-    errorHandler: '~/plugins/apollo-error-handler.js',
-    // required
-    clientConfigs: {
-      default: '~/apollo/client-configs/default.js'
-    }
-  },
   /*
    ** Build configuration
    */

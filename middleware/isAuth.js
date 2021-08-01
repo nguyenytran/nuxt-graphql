@@ -1,6 +1,7 @@
-export default function({ app, redirect }) {
-  const hasToken = !!app.$apolloHelpers.getToken()
-  if (!hasToken) {
-    return redirect('/login')
+export default function({ app }) {
+  if (app.$auth.$storage.getCookie('_token.local')) {
+    return app.$auth.redirect('home')
   }
+
+  return app.$auth.redirect('login')
 }
